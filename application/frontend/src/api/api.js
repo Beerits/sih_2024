@@ -1,17 +1,16 @@
-const API_URL = 'http://localhost:5000';
-
-export const fetchSections = async () => {
-    const response = await fetch(`${API_URL}/sections`);
+export async function fetchSections() {
+    const response = await fetch('/api/sections');
     return response.json();
-};
+}
 
-export const generateStory = async (sectionText) => {
-    const response = await fetch(`${API_URL}/generate_story`, {
+export async function generateStory(section_id) {
+    const response = await fetch('/api/generate_story', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ section_text: sectionText }),
+        body: JSON.stringify({ section_id }),
     });
+
     return response.json();
-};
+}
